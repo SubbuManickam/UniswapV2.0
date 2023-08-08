@@ -1,0 +1,60 @@
+# <h1 align="center"> Forge Template </h1>
+
+**Template repository for getting started quickly with Foundry projects**
+
+![Github Actions](https://github.com/foundry-rs/forge-template/workflows/CI/badge.svg)
+
+## Getting Started
+
+Click "Use this template" on [GitHub](https://github.com/foundry-rs/forge-template) to create a new repository with this repo as the initial state.
+
+Or, if your repo already exists, run:
+```sh
+forge build
+forge test
+forge coverage
+```
+
+## Writing your first test
+
+All you need is to `import forge-std/Test.sol` and then inherit it from your test contract. Forge-std's Test contract comes with a pre-instatiated [cheatcodes environment](https://book.getfoundry.sh/cheatcodes/), the `vm`. It also has support for [ds-test](https://book.getfoundry.sh/reference/ds-test.html)-style logs and assertions. Finally, it supports Hardhat's [console.log](https://github.com/brockelmore/forge-std/blob/master/src/console.sol). The logging functionalities require `-vvvv`.
+
+```solidity
+pragma solidity 0.8.10;
+
+import "forge-std/Test.sol";
+
+contract ContractTest is Test {
+    function testExample() public {
+        vm.roll(100);
+        console.log(1);
+        emit log("hi");
+        assertTrue(true);
+    }
+}
+```
+
+## Development
+
+This project uses [Foundry](https://getfoundry.sh). See the [book](https://book.getfoundry.sh/getting-started/installation.html) for instructions on how to install and use Foundry.
+
+## Coverage Report
+
+$ forge coverage
+[⠢] Compiling...
+[⠢] Compiling 21 files with 0.8.21
+[⠔] Solc 0.8.21 finished in 5.43s
+Compiler run successful!
+Analysing contracts...
+Running tests...
+| File                         | % Lines          | % Statements     | % Branches     | % Funcs        |
+|------------------------------|------------------|------------------|----------------|----------------|
+| src/libraries/Math.sol       | 88.89% (8/9)     | 91.67% (11/12)   | 75.00% (3/4)   | 100.00% (2/2)  |
+| src/libraries/UQ112x112.sol  | 0.00% (0/2)      | 0.00% (0/2)      | 100.00% (0/0)  | 0.00% (0/2)    |
+| src/uniswapV2Factory.sol     | 100.00% (12/12)  | 100.00% (19/19)  | 100.00% (6/6)  | 100.00% (1/1)  |
+| src/uniswapV2Library.sol     | 100.00% (34/34)  | 97.18% (69/71)   | 87.50% (14/16) | 100.00% (8/8)  |
+| src/uniswapV2Pair.sol        | 94.12% (64/68)   | 95.65% (110/115) | 78.57% (22/28) | 100.00% (8/8)  |
+| src/uniswapV2Router02.sol    | 93.02% (40/43)   | 95.31% (61/64)   | 77.27% (17/22) | 100.00% (7/7)  |
+| test/mocks/ERC20Mintable.sol | 0.00% (0/1)      | 0.00% (0/1)      | 100.00% (0/0)  | 0.00% (0/1)    |
+| test/uniswapV2Pair.sol       | 40.00% (6/15)    | 36.84% (7/19)    | 0.00% (0/6)    | 50.00% (2/4)   |
+| Total                        | 89.13% (164/184) | 91.42% (277/303) | 75.61% (62/82) | 84.85% (28/33) |
